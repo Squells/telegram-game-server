@@ -1,0 +1,4 @@
+BOT_TOKEN=Ваш токен
+TYPE=counterstrike16
+HOST=127.0.0.1
+PORT=27015
