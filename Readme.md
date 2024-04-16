@@ -20,7 +20,7 @@
 <h2>Установка и запуск</h2>
 <ol>
   <li>Клонируйте репозиторий:<br><code>git clone https://github.com/Squells/telegram.git </code></li>
-  <li>Перейдите в каталог проекта:<br><code>cd telegram</code></li>
+  <li>Перейдите в каталог проекта:<br><code>cd telegram-game-server</code></li>
   <li>Установите зависимости:<br><code>npm install</code></li>
 
   <li>Соберите проект:<br><code>npm run build</code></li>
