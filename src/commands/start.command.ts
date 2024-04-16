@@ -1,8 +1,9 @@
-import { Markup, Telegraf } from "telegraf";
+import { Markup, Telegraf, Types } from "telegraf";
 import { Command } from "./command.class";
 import { IBotContext } from "../context/context.interface";
 import { GameDig } from "gamedig";
 import { IConfigService } from "../config/config.interface";
+import fs from "fs";
 
 export class StartCommand extends Command {
   constructor(
@@ -31,8 +32,15 @@ export class StartCommand extends Command {
       const playersName = server.players
         .map((player) => "🎮" + player.name)
         .join("\n");
-      ctx.editMessageText(
-        `Сервер: ${server.name}\n\n ℹ️ Карта: ${server.map} | ${server.numplayers}/${server.maxplayers}\n\n ${playersName}`
+      const mapPath = `maps/${server.map}.jpg`;
+      const mapStream = fs.createReadStream(mapPath);
+      ctx.replyWithPhoto(
+        {
+          source: mapStream,
+        },
+        {
+          caption: `Сервер: ${server.name}\n\n ℹ️ Карта: ${server.map} | ${server.numplayers}/${server.maxplayers}\n\n ${playersName}`,
+        }
       );
     });
     this.bot.action("help", (ctx) => {
