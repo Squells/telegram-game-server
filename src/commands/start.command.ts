@@ -1,4 +1,4 @@
-import { Markup, Telegraf, Types } from "telegraf";
+import { Markup, Telegraf } from "telegraf";
 import { Command } from "./command.class";
 import { IBotContext } from "../context/context.interface";
 import { GameDig } from "gamedig";
@@ -30,7 +30,7 @@ export class StartCommand extends Command {
         port: this.configService.get<number>("PORT"),
       });
       const playersName = server.players
-        .map((player) => "🎮" + player.name)
+        .map((player) => "🎮 " + player.name)
         .join("\n");
       const mapPath = `maps/${server.map}.jpg`;
       const mapStream = fs.createReadStream(mapPath);
@@ -39,13 +39,13 @@ export class StartCommand extends Command {
           source: mapStream,
         },
         {
-          caption: `Сервер: ${server.name}\n\n ℹ️ Карта: ${server.map} | ${server.numplayers}/${server.maxplayers}\n\n ${playersName}`,
+          caption: `Сервер: ${server.name}\n\nℹ️ Карта: ${server.map} | ${server.numplayers}/${server.maxplayers}\n\nИгроки:\n${playersName}`,
         }
       );
     });
     this.bot.action("help", (ctx) => {
       ctx.sendMessage(
-        "За помощью вы можете обратиться на форум dev-cs.ru или в личные сообщения (Телеграмм) @soulw7",
+        "За помощью вы можете обратиться на форум dev-cs.ru или в личные сообщения (Телеграмм) @Disgustingly7",
         {
           link_preview_options: { is_disabled: true },
         }
