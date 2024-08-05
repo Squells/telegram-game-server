@@ -33,7 +33,11 @@ export class StartCommand extends Command {
         .map((player) => "🎮 " + player.name)
         .join("\n");
       const mapPath = `maps/${server.map}.jpg`;
-      const mapStream = fs.createReadStream(mapPath);
+      const defaultMapPath = `maps/none.png`;
+      const mapExists = fs.existsSync(mapPath);
+      const mapStream = fs.createReadStream(
+        mapExists ? mapPath : defaultMapPath
+      );
       ctx.replyWithPhoto(
         {
           source: mapStream,
